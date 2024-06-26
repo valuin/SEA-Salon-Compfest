@@ -1,0 +1,24 @@
+-- Set the website layout and color palette ✔️
+
+
+-- Make a landing page
+    . add slogan ✔️
+    . add image ✔️
+    . fill out cards / subsections for the services provided ⌛
+    . add contact details on the footer
+    . add CTA buttons for booking
+
+-- make a review page
+    . create new routing page
+    . add input forms
+    . display submitted review below the forms
+
+-- make a reservation page
+    . create new routing page
+    . add input forms
+    . setup supabase table for reservation tables
+    . setup API for inserting into reservation
+
+-- improve on authentication
+
+
