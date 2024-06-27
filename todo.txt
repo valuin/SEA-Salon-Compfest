@@ -4,14 +4,14 @@
 -- Make a landing page
     . add slogan ✔️
     . add image ✔️
-    . fill out cards / subsections for the services provided ⌛
-    . add contact details on the footer
+    . fill out cards / subsections for the services provided ✔️
+    . add contact details on the footer ✔️
     . add CTA buttons for booking
 
 -- make a review page
     . create new routing page ✔️
-    . add input forms
-    . display submitted review below the forms
+    . add input forms ✔️
+    . display submitted review below the forms ✔️
 
 -- make a reservation page
     . create new routing page

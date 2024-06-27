@@ -18,7 +18,7 @@ const Navbar = () => {
             <Link href="/review" passHref>
               <div className="font-semibold text-lg hover:text-redText cursor-pointer">Review</div>
             </Link>
-            <Link href="/services" passHref>
+            <Link href="/#services-section" passHref>
               <div className="font-semibold text-lg hover:text-redText cursor-pointer">Services</div>
             </Link>
           </div>
