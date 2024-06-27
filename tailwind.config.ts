@@ -13,7 +13,7 @@ module.exports = {
         'primary': "#e9eef1",
         'text': 'neutral-950',
         'green': '#1B9F5D',
-        'redText': '#98110C',
+        'redText': '#ee271f',
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         btn: {
