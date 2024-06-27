@@ -21,13 +21,13 @@ const ReviewForm = () => {
         <h1 className="leading-snug text-3xl md:text-5xl font-serif mb-4 text-redText">
           We'd love to get your feedback
         </h1>
-        <p className="text-neutral-950 md:text-2xl">
-          Tell us about your experience so we can improve for your future
+        <p className="text-neutral-950 text-lg md:text-xl">
+          Tell us about your experience so we can improve on your future
           visits.
         </p>
       </div>
       <div className="w-1/2">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 p-2">
           <div>
             <label
               htmlFor="name"
@@ -64,7 +64,7 @@ const ReviewForm = () => {
             <label className="block text-sm font-medium mb-1 text-redText">
               Your rating
             </label>
-            <div className="flex">
+            <div className="flex pr-6">
               {[...Array(5)].map((star, index) => {
                 index += 1;
                 return (

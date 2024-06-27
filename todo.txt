@@ -6,7 +6,7 @@
     . add image ✔️
     . fill out cards / subsections for the services provided ✔️
     . add contact details on the footer ✔️
-    . add CTA buttons for booking
+    . add CTA buttons for booking ✔️
 
 -- make a review page
     . create new routing page ✔️
@@ -14,11 +14,16 @@
     . display submitted review below the forms ✔️
 
 -- make a reservation page
-    . create new routing page
+    . create new routing page ✔️
     . add input forms
     . setup supabase table for reservation tables
     . setup API for inserting into reservation
 
 -- improve on authentication
+    . add extra fields to the authentication
+    . limit reservation to logged in only ✔️
+    .
+
+-- make admin dashboard
 
 

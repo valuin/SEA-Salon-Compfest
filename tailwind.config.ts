@@ -5,6 +5,29 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        glow: '0 0 8px rgba(255, 100, 100, 0.85)',
+      },
+      keyframes: {
+        fadeIn : {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+        fadeOut : {
+          '0%': { opacity: 1 },
+          '100%': { opacity: 0 },
+        },
+      },
+      animation: {
+        'fadeIn': 'fadeIn 1s ease-in-out',
+        'fadeOut': 'fadeOut 0.5s ease-in-out',
+      },
+      animationDelay: {
+        'delay-1': '1s',
+        'delay-2': '2s',
+        'delay-3': '3s',
+        'delay-4': '4s',
+      },
       fontFamily: {
         rosarivo: ['Rosarivo', 'normal'],
         'dm-serif': ['DM Serif Display', 'serif'],
