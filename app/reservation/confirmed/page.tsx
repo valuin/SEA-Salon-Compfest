@@ -1,11 +1,10 @@
-import React from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { createClient } from "@/utils/supabase/server";
+import Header from "@/components/Header";
 import { redirect } from "next/navigation";
-import ReservationForm from "@/components/ReservationForm";
+import Footer from "@/components/Footer";
 
-export default async function ReservationPage() {
+export default async function ProtectedPage() {
   const supabase = createClient();
 
   const {
@@ -19,12 +18,8 @@ export default async function ReservationPage() {
   return (
     <div className="flex-1 w-full flex flex-col gap-10 items-center bg-primary">
       <Navbar />
-
-      <div className="flex flex-col max-w-4xl px-3 w-full">
-        <h1 className="text-4xl text-center mt-10 text-neutral-950 font-serif mb-8">
-          Make a Reservation
-        </h1>
-        <ReservationForm />
+      <div className="mt-24">
+        <h1 className="text-4xl text-center mt-10 text-neutral-950">Welcome to the protected page</h1>
       </div>
 
       <Footer />

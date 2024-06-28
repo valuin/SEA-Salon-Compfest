@@ -14,7 +14,7 @@ const OurServices = () => {
           Our Services
         </h2>
       </div>
-      <div className="flex justify-center items-center space-x-4 overflow-x-auto flex-wrap">
+      <div className="flex justify-center items-center space-x-4 overflow-x-hidden flex-wrap">
         {services.map((service, index) => (
           <div
             key={index}

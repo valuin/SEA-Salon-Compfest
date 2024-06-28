@@ -15,7 +15,7 @@
 
 -- make a reservation page
     . create new routing page ✔️
-    . add input forms
+    . add input forms ✔️
     . setup supabase table for reservation tables
     . setup API for inserting into reservation
 
