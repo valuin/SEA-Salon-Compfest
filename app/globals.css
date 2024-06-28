@@ -90,4 +90,6 @@
   font-family: 'DM Serif Display', serif;
 }
 
-
+.hover-effect {
+  @apply hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150;
+}

@@ -27,7 +27,7 @@ const ReviewForm = () => {
         </p>
       </div>
       <div className="w-1/2">
-        <form onSubmit={handleSubmit} className="space-y-6 p-2">
+        <form onSubmit={handleSubmit} className="space-y-6 p-1">
           <div>
             <label
               htmlFor="name"
@@ -88,9 +88,9 @@ const ReviewForm = () => {
           </div>
           <button
             type="submit"
-            className="bg-neutral-950 text-primary px-4 py-2 rounded hover:bg-redText transition-colors"
+            className="bg-neutral-950 text-primary px-4 py-2 rounded hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150"
           >
-            Submit Review
+            Submit
           </button>
         </form>
       </div>

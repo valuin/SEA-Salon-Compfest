@@ -8,7 +8,7 @@ const OurServices = () => {
   ];
 
   return (
-    <section className="my-16 p-16 text-center">
+    <section className="my-16 p-8 text-center">
       <div className="flex justify-center items-center mb-4"> 
         <h2 className="text-neutral-950 text-4xl md:text-5xl font-rosarivo-italic mb-6" id="services-section">
           Our Services

@@ -1,20 +1,47 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Spinner from './Spinner';
+import { submitReservation } from '@/app/actions/reservation';
 
 const ReservationForm = () => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [service, setService] = useState('');
     const [date, setDate] = useState('');
+    const [today, setToday] = useState('');
     const [time, setTime] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
     const router = useRouter();
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    useEffect(() => {
+        const currentDate = new Date();
+        const offset = currentDate.getTimezoneOffset();
+        const localDate = new Date(currentDate.getTime() - (offset * 60000));
+        setToday(localDate.toISOString().split('T')[0]);
+    }, []);
+
+    const handlePhoneChange = (e:any) => {
+        const value = e.target.value;
+        // Allow only digits
+        if (/^\d*$/.test(value)) {
+            setPhone(value);
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Here you would typically send the reservation data to your backend
-        // For now, we'll just redirect to a confirmation page
-        router.push('/reservation/confirmed');
+        setIsLoading(true);
+        const formData = new FormData(e.currentTarget);
+        const result = await submitReservation(formData);
+
+        if (result.success) {
+            router.push('/reservation/confirmed');
+        } else {
+            console.error('Error submitting reservation:', result.error);
+            // Handle error (e.g., show error message to user)
+        }
     };
 
     const generateTimeSlots = () => {
@@ -26,28 +53,30 @@ const ReservationForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md mx-auto mb-20 px-4">
             <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-1 text-neutral-950">Name</label>
                 <input
                     type="text"
                     id="name"
+                    name='name'
                     value={name}
                     placeholder='Your Name'
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 text-neutral-950"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-redText text-neutral-950"
                     required
                 />
             </div>
             <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-1 text-neutral-950">Active Phone Number</label>
+                <label htmlFor="phone" className="block text-sm font-medium mb-1 text-neutral-950">Phone Number</label>
                 <input
                     type="tel"
                     id="phone"
+                    name='phone'
                     value={phone}
                     placeholder='Your Phone Number'
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 text-neutral-950"
+                    onChange={handlePhoneChange}
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-redText text-neutral-950"
                     required
                 />
             </div>
@@ -55,15 +84,16 @@ const ReservationForm = () => {
                 <label htmlFor="service" className="block text-sm font-medium mb-1 text-neutral-950">Type of Service</label>
                 <select
                     id="service"
+                    name='service'
                     value={service}
                     onChange={(e) => setService(e.target.value)}
-                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 text-neutral-950"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-redText text-neutral-950"
                     required
                 >
                     <option value="">Select a service</option>
-                    <option value="haircut">Haircuts and Styling</option>
-                    <option value="manicure">Manicure and Pedicure</option>
-                    <option value="facial">Facial Treatments</option>
+                    <option value="Haircuts and Styling">Haircuts and Styling</option>
+                    <option value="Manicure and Pedicure">Manicure and Pedicure</option>
+                    <option value="Facial Treatments">Facial Treatments</option>
                 </select>
             </div>
             <div>
@@ -71,9 +101,11 @@ const ReservationForm = () => {
                 <input
                     type="date"
                     id="date"
+                    name='date'
                     value={date}
+                    min={today}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 text-neutral-950"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-redText text-neutral-950"
                     required
                 />
             </div>
@@ -81,9 +113,10 @@ const ReservationForm = () => {
                 <label htmlFor="time" className="block text-sm font-medium mb-1 text-neutral-950">Time</label>
                 <select
                     id="time"
+                    name='time'
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 text-neutral-950"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-redText text-neutral-950"
                     required
                 >
                     <option value="">Select a time</option>
@@ -94,9 +127,10 @@ const ReservationForm = () => {
             </div>
             <button
                 type="submit"
-                className="w-full bg-neutral-950 text-white px-4 py-2 rounded-md hover:bg-neutral-800 transition-colors"
+                className="w-full bg-neutral-950 text-white px-4 py-2 rounded-md hover-effect flex justify-center items-center"
+                disabled={isLoading}
             >
-                Make Reservation
+                {isLoading ? <Spinner /> : 'Make Reservation'}
             </button>
         </form>
     );
