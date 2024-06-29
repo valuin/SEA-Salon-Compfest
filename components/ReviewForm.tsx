@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { submitReview } from "@/app/actions/reviews";
 
 const ReviewForm = () => {
   const [name, setName] = useState("");
@@ -9,10 +10,17 @@ const ReviewForm = () => {
   const [hover, setHover] = useState(0);
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Use router here as needed
-    router.push("/review-submitted");
+    const formData = new FormData(e.currentTarget);
+    formData.append("rating", rating.toString());
+    const result = await submitReview(formData);
+
+    if (result.success) {
+      router.push("/review/submitted");
+    } else {
+      console.error("Error submitting review:", result.error);
+    }
   };
 
   return (
@@ -22,8 +30,7 @@ const ReviewForm = () => {
           We'd love to get your feedback
         </h1>
         <p className="text-neutral-950 text-lg md:text-xl">
-          Tell us about your experience so we can improve on your future
-          visits.
+          Tell us about your experience so we can improve on your future visits.
         </p>
       </div>
       <div className="w-1/2">
@@ -38,6 +45,7 @@ const ReviewForm = () => {
             <input
               type="text"
               id="name"
+              name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full bg-transparent border-b border-neutral-950 focus:outline-none"
@@ -53,6 +61,7 @@ const ReviewForm = () => {
             </label>
             <textarea
               id="review"
+              name="review"
               value={review}
               onChange={(e) => setReview(e.target.value)}
               className="w-full bg-transparent border-b border-neutral-950 focus:outline-none"
@@ -86,6 +95,7 @@ const ReviewForm = () => {
               })}
             </div>
           </div>
+          <input type="hidden" name="rating" value={rating} />
           <button
             type="submit"
             className="bg-neutral-950 text-primary px-4 py-2 rounded hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150"

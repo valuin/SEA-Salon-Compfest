@@ -16,13 +16,16 @@
 -- make a reservation page
     . create new routing page ✔️
     . add input forms ✔️
-    . setup supabase table for reservation tables
-    . setup API for inserting into reservation
+    . setup supabase table for reservation tables ✔️
+    . setup API for inserting into reservation ✔️
+    . finish the reservation submitted page
 
 -- improve on authentication
-    . add extra fields to the authentication
+    . add extra fields to the authentication ✔️
+    . connect the extra fields to the user table database
     . limit reservation to logged in only ✔️
-    .
+    . make admin role login
+
 
 -- make admin dashboard
 

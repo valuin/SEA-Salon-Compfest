@@ -9,6 +9,23 @@ export default async function AuthButton() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  let userName = "";
+  if (user) {
+    const { data, error } = await supabase
+      .from('users')
+      .select('name')
+      .eq('email', user.email)
+      .single();
+
+    if (data) {
+      userName = data.name;
+    }
+
+    if (error) {
+      console.error('Error getting user data:', error);
+    }
+  }
+
   const signOut = async () => {
     "use server";
     const supabase = createClient();
@@ -18,7 +35,7 @@ export default async function AuthButton() {
 
   return user ? (
     <div className="flex items-center gap-4">
-      <span className="hidden greet:inline">Hey, {user.email}!</span>
+      <span className="hidden greet:inline">Hey, {userName}!</span>
       <form action={signOut}>
         <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-redText transition duration-150 text-primary">
           Logout
