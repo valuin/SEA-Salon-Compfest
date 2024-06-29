@@ -8,7 +8,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Salon Website",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  description: "Where Every Visit is Heaven on Earth",
 };
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
+      <body className="bg-primary text-foreground">
         <main className="min-h-screen flex flex-col items-center bg-primary">
           {children}
         </main>

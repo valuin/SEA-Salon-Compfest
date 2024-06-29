@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
@@ -13,7 +13,7 @@ export default async function ReservationPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    return redirect("/auth/login");
   }
 
   return (

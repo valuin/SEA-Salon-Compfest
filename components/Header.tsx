@@ -49,7 +49,7 @@ export default function Header() {
       >
         Book Now
       </button>
-      <p className="text-neutral-950 text-3xl mt-6 font-semibold font-rosarivo text-center justify-center">
+      <p className="text-neutral-950 text-3xl mt-6 font-semibold font-rosarivo text-center justify-center" id="services-section">
         Where Every Visit is Heaven on Earth
       </p>
     </div>

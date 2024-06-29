@@ -15,6 +15,18 @@ export default async function ProtectedPage() {
     return redirect("/auth/login");
   }
 
+  const { data: userData, error } = await supabase
+    .from("users")
+    .select("role")
+    .eq("email", user.email)
+    .single();
+
+  if (error || !userData || userData.role !== "Admin") {
+    return redirect("/");
+  }
+
+  // Continue with page logic for users with the 'Admin' role
+
   return (
     <div className="flex-1 w-full flex flex-col gap-10 items-center bg-primary">
       <Navbar />
@@ -23,7 +35,6 @@ export default async function ProtectedPage() {
           Welcome to the protected page
         </h1>
       </div>
-
       <Footer />
     </div>
   );

@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import { createClient } from "@/utils/supabase/server";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
@@ -12,7 +12,7 @@ export default async function ProtectedPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    return redirect("/auth/login");
   }
 
   return (
@@ -23,7 +23,9 @@ export default async function ProtectedPage() {
         <Header />
       </div>
       <div className="mt-24">
-        <h1 className="text-4xl text-center mt-10 text-neutral-950">Welcome to the protected page</h1>
+        <h1 className="text-4xl text-center mt-10 text-neutral-950">
+          Welcome to the protected page
+        </h1>
       </div>
 
       <Footer />

@@ -1,30 +1,48 @@
 import Link from "next/link";
+import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "@/components/submit-button";
 
-export default function Login({
+export default function SignUp({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
-  const signIn = async (formData: FormData) => {
+  const signUp = async (formData: FormData) => {
     "use server";
 
+    const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const signUpResponse = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo: `${origin}/auth/callback`,
+      },
     });
 
-    if (error) {
-      return redirect("/login?message=Wrong email or password. Please try again.");
+    if (signUpResponse.error) {
+      console.error("Error during signUp:", signUpResponse.error);
+      return { success: false, error: signUpResponse.error.message };
     }
 
-    return redirect("/");
+    // Insert additional user details into the 'users' table, excluding the password since Supabase handles auth
+    const { data, error } = await supabase.from("users").insert([
+      { name, email, phone, role: "Customer" },
+    ]);
+
+    if (error) {
+      console.error("Error inserting user details:", error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true, data };
   };
 
   return (
@@ -51,6 +69,25 @@ export default function Login({
       </Link>
 
       <form className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground text-redText">
+        <label className="text-md" htmlFor="name">
+          Name
+        </label>
+        <input
+          className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 text-neutral-950"
+          name="name"
+          placeholder="Your Name"
+          required
+        />
+        <label className="text-md" htmlFor="phone">
+          Phone Number
+        </label>
+        <input
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 text-neutral-950"
+          type="tel"
+          name="phone"
+          placeholder="Your Phone Number"
+          required
+        />
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -72,17 +109,20 @@ export default function Login({
         />
 
         <SubmitButton
-          formAction={signIn}
-          className="rounded-md px-4 py-2 text-foreground mb-2 bg-neutral-950 hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150"
-          pendingText="Signing In..."
+          formAction={signUp}
+          className="bg-neutral-950 rounded-md px-4 py-2 text-foreground mb-2 text-primary hover-effect"
+          pendingText="Signing Up..."
         >
-          Login
+          Sign Up
         </SubmitButton>
-        <Link href="/signup" className="text-center text-sm text-redText hover:underline">
-          Don't have an account? Sign Up
+        <Link
+          href="/auth/login"
+          className="text-center text-sm text-redText hover:underline"
+        >
+          Already have an account? Sign In
         </Link>
         {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-red-800 font-semibold text-center">
+          <p className="mt-4 p-4 bg-foreground/10 text-redText text-center">
             {searchParams.message}
           </p>
         )}
