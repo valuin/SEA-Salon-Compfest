@@ -1,8 +1,16 @@
 import Navbar from "@/components/navbar/Navbar";
 import { createClient } from "@/utils/supabase/server";
-import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import Footer from "@/components/Footer";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/Dialog";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -34,6 +42,22 @@ export default async function ProtectedPage() {
         <h1 className="text-4xl text-center mt-10 text-neutral-950">
           Welcome to the protected page
         </h1>
+        <Dialog>
+          <DialogTrigger asChild>
+            <button className="bg-neutral-950 text-primary px-4 py-2 rounded hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150">
+              Add New Branch
+            </button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
       <Footer />
     </div>
