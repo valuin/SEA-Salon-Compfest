@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { submitReview } from "@/app/actions/reviews";
+import { SubmitButton } from "./submit-button";
 
 const ReviewForm = () => {
   const [name, setName] = useState("");
@@ -96,12 +97,12 @@ const ReviewForm = () => {
             </div>
           </div>
           <input type="hidden" name="rating" value={rating} />
-          <button
-            type="submit"
-            className="bg-neutral-950 text-primary px-4 py-2 rounded hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150"
+          <SubmitButton
+            formAction="submit"
+            className="bg-neutral-950 text-primary px-6 py-2 rounded hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150"
           >
             Submit
-          </button>
+          </SubmitButton>
         </form>
       </div>
     </div>

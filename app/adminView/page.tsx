@@ -38,8 +38,8 @@ export default async function ProtectedPage() {
   return (
     <div className="flex-1 w-full flex flex-col gap-10 items-center bg-primary">
       <Navbar />
-      <div className="mt-24">
-        <h1 className="text-4xl text-center mt-10 text-neutral-950">
+      <div className="mt-4">
+        <h1 className="text-4xl text-center mb-4 text-neutral-950">
           Welcome to the protected page
         </h1>
         <Dialog>
@@ -49,6 +49,7 @@ export default async function ProtectedPage() {
             </button>
           </DialogTrigger>
           <DialogContent>
+            <h1>LALALLALA</h1>
             <DialogHeader>
               <DialogTitle>Are you absolutely sure?</DialogTitle>
               <DialogDescription>

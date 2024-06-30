@@ -122,7 +122,7 @@ export default function SignUp({
           Already have an account? Sign In
         </Link>
         {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-redText text-center">
+          <p className="mt-4 p-4 text-redText text-center">
             {searchParams.message}
           </p>
         )}

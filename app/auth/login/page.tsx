@@ -52,7 +52,7 @@ export default function Login({
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
         href="/"
-        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover hover:bg-redText duration-100 flex items-center group text-sm"
+        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-primary bg-neutral-950 hover:bg-redText duration-200 flex items-center group text-sm"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -94,8 +94,7 @@ export default function Login({
 
         <SubmitButton
           formAction={signIn}
-          className="rounded-md px-4 py-2 text-foreground mb-2 bg-neutral-950 hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150"
-          pendingText="Signing In..."
+          className="rounded-md px-4 py-2 text-primary mb-2 bg-neutral-950 hover:bg-redText hover:-translate-y-1 hover:shadow-lg hover:shadow-redText/50 active:scale-90 duration-150"
         >
           Login
         </SubmitButton>
@@ -106,7 +105,7 @@ export default function Login({
           Don't have an account? Sign Up
         </Link>
         {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-red-800 font-semibold text-center">
+          <p className="mt-4 p-4 text-red-800 font-semibold text-center">
             {searchParams.message}
           </p>
         )}
