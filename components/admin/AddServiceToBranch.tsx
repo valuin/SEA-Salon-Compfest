@@ -56,7 +56,7 @@ const AddServiceToBranch: React.FC<AddServiceToBranchProps> = ({ branchId, onSer
       </div>
       <button
         type="submit"
-        className="w-full px-4 py-2 bg-neutral-950 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+        className="w-full px-4 py-2 bg-neutral-950 text-white rounded-md hover-effect"
       >
         Add Service to Branch
       </button>

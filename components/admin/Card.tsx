@@ -79,7 +79,7 @@ const Card: React.FC<BranchProps> = ({
       </div>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <button className="bg-neutral-950 text-white px-4 py-2 rounded-full hover:bg-green-700 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/50 active:scale-90 duration-150 text-sm">
+          <button className="bg-neutral-950 text-white px-4 py-2 rounded-full hover-effect text-sm">
             Add Service
           </button>
         </DialogTrigger>

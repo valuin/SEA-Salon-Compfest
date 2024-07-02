@@ -22,25 +22,6 @@ export default async function AdminDashboard() {
         <h1 className="text-2xl text-center mb-4 text-neutral-950">
           Welcome to admin dashboard
         </h1>
-        {branches && branches.length > 0 ? (
-          <div className="flex flex-wrap justify-center gap-4 my-4">
-            {branches.map((branch) => (
-              <Card
-                key={branch.id}
-                id={branch.id}
-                name={branch.name}
-                location={branch.location}
-                openingTime={branch.openingTime}
-                closingTime={branch.closingTime}
-                services={branch.services}
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="text-center text-neutral-700">
-            No branches found. Add a new branch to get started.
-          </p>
-        )}
         <div className="text-center mt-4 space-x-4">
           <Dialog>
             <DialogTrigger asChild>
@@ -70,6 +51,25 @@ export default async function AdminDashboard() {
             </DialogContent>
           </Dialog>
         </div>
+        {branches && branches.length > 0 ? (
+          <div className="flex flex-wrap justify-center gap-4 my-4">
+            {branches.map((branch) => (
+              <Card
+                key={branch.id}
+                id={branch.id}
+                name={branch.name}
+                location={branch.location}
+                openingTime={branch.openingTime}
+                closingTime={branch.closingTime}
+                services={branch.services}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-neutral-700">
+            No branches found. Add a new branch to get started.
+          </p>
+        )}
       </div>
       <Footer />
     </div>

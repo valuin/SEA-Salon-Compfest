@@ -10,15 +10,18 @@ export default async function AuthButton() {
   } = await supabase.auth.getUser();
 
   let userName = "";
+  let isAdmin = false;
+
   if (user) {
     const { data, error } = await supabase
       .from('users')
-      .select('name')
+      .select('name, role')
       .eq('email', user.email)
       .single();
 
     if (data) {
       userName = data.name;
+      isAdmin = data.role === 'Admin';
     }
 
     if (error) {
@@ -36,6 +39,14 @@ export default async function AuthButton() {
   return user ? (
     <div className="flex items-center gap-4">
       <span className="hidden greet:inline">Hey, {userName}!</span>
+      {isAdmin && (
+        <Link
+          href="/adminView"
+          className="py-2 px-4 rounded-md no-underline bg-neutral-950 hover:bg-redText transition duration-150 text-primary"
+        >
+          Dashboard
+        </Link>
+      )}
       <form action={signOut}>
         <button className="py-2 px-4 rounded-md no-underline bg-neutral-950 hover:bg-redText transition duration-150 text-primary">
           Logout

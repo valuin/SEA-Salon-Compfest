@@ -1,10 +1,14 @@
 'use client'
 import React, { useState } from 'react';
 import { createClient } from "@/utils/supabase/client";
+import { DialogClose } from "@/components/ui/Dialog";
+import { useRouter } from 'next/navigation';
+
 
 const AddNewService: React.FC = () => {
   const [serviceName, setServiceName] = useState('');
   const [duration, setDuration] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +28,11 @@ const AddNewService: React.FC = () => {
     setServiceName('');
     setDuration('');
 
-    console.log('Service added successfully:', data);
+    const closeDialogButton = document.getElementById("closeDialog");
+    if (closeDialogButton !== null) {
+      closeDialogButton.click();
+    }
+    router.refresh();
   };
 
   return (
@@ -57,6 +65,7 @@ const AddNewService: React.FC = () => {
       >
         Add New Service
       </button>
+      <DialogClose id="closeDialog" className="hidden" />
     </form>
   );
 };

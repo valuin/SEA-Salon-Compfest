@@ -22,7 +22,7 @@ const OurServices = () => {
   return (
     <section className="my-16 p-8 text-center">
       <div className="flex justify-center items-center mb-4">
-        <h2 className="text-neutral-950 text-4xl md:text-5xl font-rosarivo-italic mb-6">
+        <h2 className="text-redText text-4xl md:text-5xl font-rosarivo-italic mb-6">
           Our Services
         </h2>
       </div>
