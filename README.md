@@ -1,4 +1,7 @@
 <h1 align="center">SEA Salon Website</h1>
+<p align="center">
+    <img alt="SEA Salon Website" src="/public/header.png">
+</p>
 
 <p align="center">
  Built with Next.js and Supabase
@@ -63,7 +66,7 @@ To run this project on your local machine, follow these steps:
    Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` can be found in [your Supabase project's API settings](https://app.supabase.com/project/_/settings/api)
 
    NOTE: You might need to do some seeding on supabase first for the local hosting using this SQL Schema
-   <img alt="Database Schema" src="/scheme.png">
+   <img alt="Database Schema" src="/public/scheme.png">
 
 
 5. You can now run the Next.js local development server:
