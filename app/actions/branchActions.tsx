@@ -3,25 +3,26 @@
 import { createClient } from "@/utils/supabase/server";
 
 export interface Service {
-  id: number;
-  name: string;
-  duration: number;
-}
+    id: number;
+    name: string;
+    duration: number;
+  }
+  
+  export interface BranchService {
+    service: Service[];
+  }
+  
+  export interface Branch {
+    id: number;
+    name: string;
+    location: string;
+    openingTime: string;
+    closingTime: string;
+    services: BranchService[];
+  }
+  
 
-export interface BranchService {
-  service: Service;
-}
-
-export interface Branch {
-  id: number;
-  name: string;
-  location: string;
-  openingTime: string;
-  closingTime: string;
-  services: BranchService[];
-}
-
-export async function fetchBranches(): Promise<Branch[]> {
+  export async function fetchBranches(): Promise<Branch[]> {
     const supabase = createClient();
     const { data, error } = await supabase
       .from('branches')
@@ -40,9 +41,22 @@ export async function fetchBranches(): Promise<Branch[]> {
       console.error('Error fetching branches:', error);
       throw error;
     }
-  
-    return data || [];
-  }
+
+    // Transform the data to match the Branch interface
+    const transformedData: Branch[] = data.map((branch: any) => ({
+      id: branch.id,
+      name: branch.name,
+      location: branch.location,
+      openingTime: branch.openingTime,
+      closingTime: branch.closingTime,
+      services: branch.services.map((branchService: any) => ({
+        service: branchService.service // Map the array of services
+      }))
+    }));
+
+    return transformedData;
+}
+
 
 export async function addServiceToBranch(branchId: number, serviceId: number) {
   const supabase = createClient();
