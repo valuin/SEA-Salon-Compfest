@@ -1,4 +1,6 @@
 import { fetchBranches, Branch } from "@/app/actions/branchActions";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import Card from "@/components/admin/Card";
@@ -14,6 +16,27 @@ import {
 
 export default async function AdminDashboard() {
   const branches: Branch[] = await fetchBranches();
+
+  const supabase = createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (!user || userError) {
+    return redirect("/");
+  }
+
+  const { data: userData, error: roleError } = await supabase
+    .from("users")
+    .select("role")
+    .eq("email", user.email)
+    .single();
+
+  if (roleError || !userData || userData.role !== "Admin") {
+    return redirect("/");
+  }
 
   return (
     <div className="flex-1 w-full flex flex-col gap-5 items-center bg-primary">
