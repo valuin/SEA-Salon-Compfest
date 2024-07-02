@@ -36,7 +36,7 @@ const OurServices = () => {
               <img
                 src={service.image}
                 alt={service.name}
-                className="w-full h-64 object-cover mb-2 rounded-xl shadow-xl group-hover:shadow-redText/20 duration-300"
+                className="w-full h-64 object-cover mb-2 border-2 border-neutral-800 group-hover:border-redText/80 rounded-xl shadow-xl group-hover:shadow-redText/20 duration-300"
               />
             </div>
             <h3 className="text-xl font-semibold text-neutral-950 group-hover:text-red-500 duration-300">

@@ -24,9 +24,26 @@
     . add extra fields to the authentication ✔️
     . connect the extra fields to the user table database
     . limit reservation to logged in only ✔️
-    . make admin role login
+    . make admin role login ✔️
 
 
 -- make admin dashboard
+    . make the branch cards ✔️
+    . add new branch ✔️ (add shadcn components)
+    . add new service ✔️ (add shadcn components)
+    . integrate adding a service to each branch cards 
+    . fix the responsiveness
+    . move the sql calls to the actions folder
+    . add dashboard to navbar if youre an admin
+
+
+-- advanced reservation
+    . add pick branch form
+    . set the services available based on the branch selected
+    . set the time available based on the branch selected
+
+
+
+-- README
 
 
