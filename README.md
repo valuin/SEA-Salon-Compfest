@@ -8,11 +8,17 @@
 </p>
 
 <p align="center">
+  <a href="#bug-notice"><strong>Bug Notice</strong></a> ·
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
   <a href="#features"><strong>Features</strong></a> ·
   <a href="#running-the-project-locally"><strong>Running the Project Locally</strong></a> ·
 </p>
 <br/>
+
+## Bug Notice
+ <strong>
+ Due to an unforeseen bug on the page routing, signing up / creating an account doesnt automatically log you in, so after making an account you must go back to the login page and login with the credentials you just put in the sign up page
+ </strong>
 
 ## Tech Stack
 
@@ -31,7 +37,6 @@ This project is built using the following technologies:
 - Reservation System
 - Authentication System of User and Admin
 - Admin Dashboard 
-
 
 
 ## Running the Project Locally
