@@ -25,15 +25,12 @@ This project is built using the following technologies:
 
 ## Features
 
-- Appointment scheduling and management
-- Customer management
-- Service catalog
-- Staff management
-- Notifications for appointments
-- Works across the entire [Next.js](https://nextjs.org) stack
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+- Navbar, Footer, Hero Section, Service Catalog
+- Page Routing
+- Review System
+- Reservation System
+- Authentication System of User and Admin
+- Admin Dashboard 
 
 
 

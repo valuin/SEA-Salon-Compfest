@@ -84,3 +84,20 @@ export async function fetchServices() {
 
   return data || [];
 }
+
+
+export async function fetchBranchesWithServices() {
+    const supabase = createClient();
+    // Assuming there's a relationship between branches and services in your database
+    const { data, error } = await supabase
+      .from("branches")
+      .select("*, services(*)")
+      .order("name");
+  
+    if (error) {
+      console.error("Error fetching branches with services:", error);
+      throw error;
+    }
+  
+    return data || [];
+  }
